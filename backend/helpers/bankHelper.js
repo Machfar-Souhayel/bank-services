@@ -1,5 +1,3 @@
-const { BigNumber } = require("bignumber.js");
-
 /* 
 INPUT
     The filterObj method takes 2 parameters
@@ -15,6 +13,18 @@ const filterObj = (obj, ...allowedFields) => {
   });
   return newObj;
 };
+
+/* 
+INPUT
+    The financial method takes 2 parameters
+    the first param : number (the number we want to use round on)
+    the second param: round 
+OUTPUT
+    The financial method return an number
+*/
+function financial(number, round) {
+  return Number.parseFloat(number).toFixed(round) * 1;
+}
 
 /*
 INPUT
@@ -49,7 +59,7 @@ OUTPUT
     */
 const tauxInteretMensuel = (tauxInteretAnnuel) => {
   let resultNoRound = (Math.pow(1 + tauxInteretAnnuel / 100, 1 / 12) - 1) * 100;
-  return resultNoRound.toFixed(3) * 1;
+  return financial(resultNoRound, 3);
 };
 
 /* 
@@ -70,7 +80,7 @@ const mensualite = (capital, dureeCredit, tauxInteretMensuel) => {
   let diviseur = Math.pow(1 + tauxInteretAnnuelPourcentage, dureeCredit) - 1;
 
   let resultNoRound = dividende / diviseur;
-  return resultNoRound.toFixed(2) * 1;
+  return financial(resultNoRound, 2);
 };
 
 /* 
@@ -83,8 +93,8 @@ OUTPUT
     The monsualite method return a number
     */
 
-function financial(x) {
-  return Number.parseFloat(x).toFixed(2) * 1;
+function financial(x, round) {
+  return Number.parseFloat(x).toFixed(round) * 1;
 }
 const tableauAmortissement = (
   soldeDebutProp,
@@ -100,7 +110,7 @@ const tableauAmortissement = (
   for (let i = 0; i < dureeCredit; i++) {
     interet = (soldeDebut * tauxMensuel) / 100;
     capitalRembourse = mensualite - interet;
-    capitalRembourseRound = financial(capitalRembourse);
+    capitalRembourseRound = financial(capitalRembourse, 2);
     soldeFin = soldeDebut - capitalRembourseRound;
 
     tableauAmortissement[i] = {
@@ -109,7 +119,7 @@ const tableauAmortissement = (
       mensualite,
       interet: {
         interet,
-        interetRound: financial(interet),
+        interetRound: financial(interet, 2),
       },
       capitalRembourse: {
         capitalRembourse,
