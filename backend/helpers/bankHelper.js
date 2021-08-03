@@ -16,6 +16,32 @@ const filterObj = (obj, ...allowedFields) => {
 
 /* 
 INPUT
+    The validateCreditTitleParams method takes 1 parameter1
+    the first param : Object (including list of numbers)
+OUTPUT
+    The validateCreditTitleParams method return a boolean value : true if it's valid otherwise false
+*/
+const validateCreditTitleParams = (filteredBody) => {
+  if (
+    !filteredBody.montantAchat ||
+    !filteredBody.fondsPropres ||
+    !filteredBody.dureeCredit ||
+    !filteredBody.tauxAnnuel
+  )
+    return false;
+  if (
+    isNaN(filteredBody.montantAchat) ||
+    isNaN(filteredBody.fondsPropres) ||
+    isNaN(filteredBody.dureeCredit) ||
+    isNaN(filteredBody.tauxAnnuel)
+  )
+    return false;
+
+  return true;
+};
+
+/* 
+INPUT
     The financial method takes 2 parameters
     the first param : number (the number we want to use round on)
     the second param: round 
@@ -135,6 +161,7 @@ const tableauAmortissement = (
 
 module.exports = {
   filterObj,
+  validateCreditTitleParams,
   montantEmprunterBrut,
   montantEmprunterNet,
   tauxInteretMensuel,

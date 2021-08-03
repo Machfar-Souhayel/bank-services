@@ -11,12 +11,8 @@ exports.creditTitle = catchAsync(async (req, res, next) => {
     "dureeCredit",
     "tauxAnnuel"
   );
-  if (
-    !filteredBody.montantAchat ||
-    !filteredBody.fondsPropres ||
-    !filteredBody.dureeCredit ||
-    !filteredBody.tauxAnnuel
-  ) {
+
+  if (!bankHelper.validateCreditTitleParams(filteredBody)) {
     return next(new appError(`Invalid request body`, 400));
   }
 
