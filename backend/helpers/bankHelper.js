@@ -23,12 +23,13 @@ OUTPUT
 */
 const validateCreditTitleParams = (filteredBody) => {
   if (
-    !filteredBody.montantAchat ||
-    !filteredBody.fondsPropres ||
-    !filteredBody.dureeCredit ||
-    !filteredBody.tauxAnnuel
+    !filteredBody.hasOwnProperty("dureeCredit") ||
+    !filteredBody.hasOwnProperty("montantAchat") ||
+    !filteredBody.hasOwnProperty("fondsPropres") ||
+    !filteredBody.hasOwnProperty("tauxAnnuel")
   )
     return false;
+
   if (
     isNaN(filteredBody.montantAchat) ||
     isNaN(filteredBody.fondsPropres) ||
@@ -36,7 +37,6 @@ const validateCreditTitleParams = (filteredBody) => {
     isNaN(filteredBody.tauxAnnuel)
   )
     return false;
-
   return true;
 };
 
