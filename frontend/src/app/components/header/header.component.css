@@ -1,0 +1,28 @@
+div.top-block {
+  height: 40px;
+  color: white;
+  background-color: #c14e2d;
+  padding-top: 6px;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+header {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+
+nav {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+nav a {
+  color: #6f7881;
+  text-decoration: none;
+  font-size: 18px;
+  text-transform: capitalize;
+}

@@ -1,0 +1,45 @@
+<div class="columns">
+  <form [formGroup]="cardForm" (ngSubmit)="onSubmit(cardForm.value)">
+    <div class="column">
+      <div class="column">
+        <app-input
+          label="montant d'achat"
+          [control]="cardForm.get('montantAchat')"
+          placeholder="le montant du credit en dinars.."
+        ></app-input>
+      </div>
+      <div class="column">
+        <app-input
+          label="fonds propres"
+          [control]="cardForm.get('fondsPropres')"
+          placeholder="les fonds propres en dinars.."
+        ></app-input>
+      </div>
+      <div class="column">
+        <app-input
+          label="durée du credit"
+          [control]="cardForm.get('dureeDuCredit')"
+          placeholder="le nombre de mois.."
+        ></app-input>
+      </div>
+      <div class="column">
+        <div class="buttons">
+          <button
+            class="button is-primary"
+            type="submit"
+            [disabled]="cardForm.invalid"
+          >
+            Submit
+          </button>
+          <button
+            class="button is-warning"
+            type="button"
+            (click)="onResetClick()"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

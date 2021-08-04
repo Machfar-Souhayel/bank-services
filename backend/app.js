@@ -4,6 +4,7 @@ const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const hpp = require("hpp");
+const cors = require("cors");
 
 const AppError = require("./utils/AppError");
 const globalErrorHandler = require("./controllers/errorController");
@@ -12,6 +13,17 @@ const bankRouter = require("./routes/bankRoutes");
 const app = express();
 
 // Global MIDDLEWARE
+
+// Allow access for testing purposes
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
+
 // Set security HTTP headers
 app.use(helmet());
 
