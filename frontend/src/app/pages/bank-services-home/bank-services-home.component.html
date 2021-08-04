@@ -1,2 +1,8 @@
-<app-card-form (submitted)="onCreditTitle($event)"></app-card-form>
-<app-table [data]="data"></app-table>
+<section class="service-section columns">
+  <app-card-form (submitted)="onCreditTitle($event)"></app-card-form>
+  <app-table
+    [data]="data"
+    title="Tableau d'amortissement"
+    [headers]="headers"
+  ></app-table>
+</section>

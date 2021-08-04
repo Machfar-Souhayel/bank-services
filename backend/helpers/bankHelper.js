@@ -9,7 +9,9 @@ OUTPUT
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
   Object.keys(obj).forEach((el) => {
-    if (allowedFields.includes(el)) newObj[el] = obj[el];
+    if (allowedFields.includes(el)) {
+      newObj[el] = parseFloat(obj[el]);
+    }
   });
   return newObj;
 };

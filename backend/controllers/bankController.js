@@ -4,19 +4,19 @@ const bankHelper = require("./../helpers/bankHelper");
 
 exports.creditTitle = catchAsync(async (req, res, next) => {
   // Filter out unwanted fields
-  const filteredBody = bankHelper.filterObj(
-    req.body,
+  const filteredQuery = bankHelper.filterObj(
+    req.query,
     "montantAchat",
     "fondsPropres",
     "dureeCredit",
     "tauxAnnuel"
   );
 
-  if (!bankHelper.validateCreditTitleParams(filteredBody)) {
+  if (!bankHelper.validateCreditTitleParams(filteredQuery)) {
     return next(new appError(`Invalid request body`, 400));
   }
 
-  const { montantAchat, fondsPropres, dureeCredit, tauxAnnuel } = filteredBody;
+  const { montantAchat, fondsPropres, dureeCredit, tauxAnnuel } = filteredQuery;
   const tauxMensuel = bankHelper.tauxInteretMensuel(tauxAnnuel);
   const montantBrut = bankHelper.montantEmprunterBrut(
     montantAchat,

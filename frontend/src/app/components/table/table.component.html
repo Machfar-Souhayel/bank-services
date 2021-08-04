@@ -1,6 +1,36 @@
-<p>table works!</p>
-<div *ngIf="data">
-  <h1>montant: {{ data.data.montant.montantBrut }}</h1>
-  <h1>taux: {{ data.data.taux.tauxAnnuel }}</h1>
-  <h1>dureeCredit: {{ data.data.dureeCredit }}</h1>
-</div>
+<table *ngIf="data" class="ui table">
+  <caption>
+    {{
+      title
+    }}
+  </caption>
+  <thead>
+    <tr>
+      <th *ngFor="let header of headers">
+        {{ header.label }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of data.data.tableauAmortissement">
+      <td>
+        {{ record.month }}
+      </td>
+      <td>
+        {{ record.soldeDebut }}
+      </td>
+      <td>
+        {{ record.mensualite }}
+      </td>
+      <td>
+        {{ record.interet.interetRound }}
+      </td>
+      <td>
+        {{ record.capitalRembourse.capitalRembourseRound }}
+      </td>
+      <td>
+        {{ record.soldeFin }}
+      </td>
+    </tr>
+  </tbody>
+</table>

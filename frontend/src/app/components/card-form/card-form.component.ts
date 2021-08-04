@@ -10,17 +10,17 @@ export class CardFormComponent implements OnInit {
   @Output() submitted = new EventEmitter<Object>();
 
   cardForm = new FormGroup({
-    montantAchat: new FormControl('', [
+    montantAchat: new FormControl('120000.00', [
       Validators.required,
       Validators.minLength(3),
       Validators.pattern(/^([1-9])[0-9]/),
     ]),
-    fondsPropres: new FormControl('', [
+    fondsPropres: new FormControl('20000.00', [
       Validators.required,
       Validators.minLength(3),
       Validators.pattern(/^([1-9])[0-9]/),
     ]),
-    dureeDuCredit: new FormControl('', [
+    dureeDuCredit: new FormControl('240', [
       Validators.required,
       Validators.minLength(1),
       Validators.maxLength(3),

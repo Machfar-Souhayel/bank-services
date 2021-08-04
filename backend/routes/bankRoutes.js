@@ -3,6 +3,6 @@ const router = express.Router();
 const bankController = require("./../controllers/bankController");
 
 // Bank routes
-router.route("/").post(bankController.creditTitle);
+router.route("/").get(bankController.creditTitle);
 
 module.exports = router;
